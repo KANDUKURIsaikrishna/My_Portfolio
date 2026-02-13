@@ -30,6 +30,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Inject Decap CMS Client ID
+        run: |
+          CLIENT_ID="${{ secrets.YOUR_CLIENT_ID }}"
+          sed -i '' "s/client_id: YOUR_CLIENT_ID/client_id: $CLIENT_ID/" public/admin/config.yml
+
       - name: Build
         run: npm run build
         env:
