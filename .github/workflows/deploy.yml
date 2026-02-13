@@ -33,7 +33,7 @@ jobs:
       - name: Inject Decap CMS Client ID
         run: |
           CLIENT_ID="${{ secrets.YOUR_CLIENT_ID }}"
-          sed -i '' "s/client_id: YOUR_CLIENT_ID/client_id: $CLIENT_ID/" public/admin/config.yml
+          sed -i "s/client_id: YOUR_CLIENT_ID/client_id: $CLIENT_ID/" public/admin/config.yml
 
       - name: Build
         run: npm run build
