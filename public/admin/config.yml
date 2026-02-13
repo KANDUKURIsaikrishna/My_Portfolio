@@ -2,6 +2,7 @@ backend:
   name: github
   repo: KANDUKURIsaikrishna/My_Portfolio
   branch: main
+  client_id: YOUR_CLIENT_ID
   # Add your GitHub OAuth app client_id below
   # client_id: YOUR_CLIENT_ID
 
