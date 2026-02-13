@@ -1,8 +1,9 @@
 backend:
   name: github
-  repo: YOUR_GITHUB_USERNAME/YOUR_REPO_NAME  # ← Replace with your GitHub repo
+  repo: KANDUKURIsaikrishna/My_Portfolio
   branch: main
-  base_url: https://api.netlify.com  # Required for GitHub OAuth — see instructions below
+  # Add your GitHub OAuth app client_id below
+  # client_id: YOUR_CLIENT_ID
 
 # Where uploaded media files are stored
 media_folder: "public/images/uploads"
@@ -76,3 +77,11 @@ collections:
           - { label: "LinkedIn", name: "linkedin", widget: "string", required: false }
           - { label: "Twitter", name: "twitter", widget: "string", required: false }
           - { label: "Email", name: "email", widget: "string", required: false }
+
+  - name: Create .env
+      run: echo "VITE_DECAP_CLIENT_ID=${{ secrets.YOUR_CLIENT_ID }}" >> .env
+
+  - name: Inject Decap CMS Client ID
+    run: |
+      CLIENT_ID=$(grep VITE_DECAP_CLIENT_ID .env | cut -d '=' -f2)
+      sed -i '' "s/client_id: YOUR_CLIENT_ID/client_id: $CLIENT_ID/" public/admin/config.yml
